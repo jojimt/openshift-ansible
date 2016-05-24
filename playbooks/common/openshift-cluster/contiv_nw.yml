@@ -1,0 +1,28 @@
+---
+# This playbook deploys contiv networking on a contiv cluster
+- hosts: all
+  sudo: yes
+  roles:
+    - contiv_facts
+
+# Install etcd
+- hosts: etcd
+  sudo: yes
+  roles:
+    - contiv_etcd
+  tags:
+    - contiv_etcd
+
+# install contiv netmaster
+- hosts: masters
+  sudo: yes
+  roles:
+    - { role: contiv, contiv_role: netmaster }
+
+# install contiv netplugin
+- hosts: nodes
+  sudo: yes
+  roles:
+    - { role: contiv, contiv_role: netplugin }
+
+
