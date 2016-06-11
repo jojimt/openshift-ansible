@@ -1,6 +1,8 @@
 # The version of Contiv binaries to use
 contiv_version: v0.1-05-02-2016.23-10-27.UTC
 
+contiv_default_subnet: "20.1.1.1/24"
+contiv_default_gw: "20.1.1.254"
 # TCP port that Netmaster listens for network connections
 netmaster_port: 9999
 
@@ -8,6 +10,7 @@ netmaster_port: 9999
 netplugin_port: 6640
 contiv_rpc_port1: 9001
 contiv_rpc_port2: 9002
+contiv_rpc_port3: 9003
 
 # Interface used by Netplugin for inter-host traffic when encap_mode is vlan.
 # The interface must support 802.1Q trunking.
@@ -57,7 +60,7 @@ contiv_encap_mode: vxlan
 netplugin_driver: ovs
 
 # Create a default Contiv network for use by pods
-contiv_default_network: false
+contiv_default_network: true
 
 # The following are aci specific parameters when contiv_fabric_mode: aci is set.
 # Otherwise, you can ignore these.

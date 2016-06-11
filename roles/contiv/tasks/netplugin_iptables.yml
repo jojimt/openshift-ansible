@@ -13,6 +13,7 @@
     - "{{ netmaster_port }}"
     - "{{ contiv_rpc_port1 }}"
     - "{{ contiv_rpc_port2 }}"
+    - "{{ contiv_rpc_port3 }}"
     - "{{ contiv_etcd_port }}"
     - "{{ kube_master_api_port }}"
 

@@ -13,6 +13,7 @@
     - "{{ netmaster_port }}"
     - "{{ contiv_rpc_port1 }}"
     - "{{ contiv_rpc_port2 }}"
+    - "{{ contiv_rpc_port3 }}"
 
 #  when: "'contiv' not in iptablesrules.stdout"
   notify:

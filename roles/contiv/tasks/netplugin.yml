@@ -47,9 +47,21 @@
   template: src=netplugin.j2 dest=/etc/default/netplugin mode=0644
   notify: restart netplugin
 
+- name: Docker | Make sure proxy setting exists
+  lineinfile: dest=/etc/sysconfig/docker-network regexp='^https_proxy.*' line='https_proxy={{ https_proxy }}' state=present
+  register: docker_updated
+
 - name: Netplugin | Copy systemd unit for netplugin
   template: src=netplugin.service dest=/etc/systemd/system/netplugin.service
   notify: reload systemd
+
+- name: systemd reload
+  shell: systemctl daemon-reload
+  when: docker_updated|changed
+
+- name: Docker | Restart docker
+  service: name=docker state=restarted
+  when: docker_updated|changed
 
 - name: Netplugin | Enable Netplugin
   service: name=netplugin enabled=yes
